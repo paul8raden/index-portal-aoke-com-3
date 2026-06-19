@@ -1,2 +1,35 @@
-# index-portal-aoke-com-3
-aoke - https://index-portal-aoke.com
+# Aoke Index Portal
+
+## 简介
+
+欢迎访问 **Aoke Index Portal**，一个专注于信息聚合与导航的轻量级入口站点。该站点托管于域名 `https://index-portal-aoke.com`，旨在为用户提供简洁、高效的内容索引服务。Aoke 作为核心关键词，贯穿于站点的设计与功能定位中，帮助访问者快速定位所需资源。
+
+## 特点
+
+- **简洁导航**：以 aoke 为索引核心，页面布局清晰，减少冗余信息干扰。
+- **快速访问**：通过 `https://index-portal-aoke.com` 直达，无需复杂跳转。
+- **持续更新**：aoke 相关的内容目录会定期维护，确保链接有效性。
+
+## 访问方式
+
+直接通过浏览器打开以下地址即可使用：
+
+`https://index-portal-aoke.com`
+
+建议将 aoke 站点添加至书签，以便日常快速查阅。
+
+## 适用场景
+
+- 需要集中管理常用链接的用户
+- 对 aoke 主题内容有索引需求的访问者
+- 寻求轻量级导航解决方案的个人或团队
+
+## 注意事项
+
+- 本站仅提供索引与导航功能，不存储用户数据。
+- 请确保网络环境可正常访问 `https://index-portal-aoke.com`。
+- 如遇链接失效或内容调整，请以站点实际展示为准。
+
+---
+
+*Aoke Index Portal 致力于成为您高效的信息入口。*

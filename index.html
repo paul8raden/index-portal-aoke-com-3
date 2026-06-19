@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aoke · 信息聚合门户</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: #f2f8f7;
+            color: #1e2d2b;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page {
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        /* hero 区域 */
+        .hero {
+            background: linear-gradient(135deg, #d4ede5 0%, #b6ddd0 100%);
+            border-radius: 28px;
+            padding: 48px 32px 40px;
+            margin-bottom: 48px;
+            box-shadow: 0 8px 20px rgba(24, 94, 78, 0.08);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            color: #135447;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #206857;
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        /* 说明段落 */
+        .intro {
+            background: #ffffffdd;
+            backdrop-filter: blur(2px);
+            padding: 28px 30px;
+            border-radius: 24px;
+            margin-bottom: 44px;
+            border: 1px solid #c6e3da;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+
+        .intro p {
+            font-size: 1.05rem;
+            color: #1f3d37;
+        }
+
+        .intro p + p {
+            margin-top: 18px;
+        }
+
+        .intro a {
+            color: #0d7660;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 1.5px;
+            text-decoration-color: #8ec6b5;
+            transition: color 0.2s;
+        }
+
+        .intro a:hover {
+            color: #063d31;
+            text-decoration-color: #0b6652;
+        }
+
+        /* 网格卡片 */
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 28px 24px 24px;
+            box-shadow: 0 4px 14px rgba(40, 112, 94, 0.06);
+            border: 1px solid #d9efe7;
+            transition: box-shadow 0.2s, transform 0.15s;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 24px rgba(30, 94, 76, 0.10);
+            transform: translateY(-2px);
+        }
+
+        .card-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 18px;
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #145548;
+            border-bottom: 2px solid #cae6dc;
+            padding-bottom: 10px;
+        }
+
+        .card-title .icon {
+            font-size: 1.4rem;
+        }
+
+        .card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .card li {
+            margin-bottom: 12px;
+            padding-left: 22px;
+            position: relative;
+            color: #1b4b40;
+            font-size: 0.98rem;
+        }
+
+        .card li::before {
+            content: "▹";
+            position: absolute;
+            left: 2px;
+            color: #28987d;
+            font-weight: 600;
+        }
+
+        /* 用途卡片特殊样式 */
+        .card-purpose p {
+            color: #1f4c42;
+            margin-bottom: 12px;
+        }
+
+        .card-purpose span.tag {
+            display: inline-block;
+            background: #daefe8;
+            padding: 3px 14px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            color: #11604b;
+            margin-right: 8px;
+            margin-bottom: 6px;
+        }
+
+        /* 适合人群卡片 */
+        .card-audience {
+            background: #f6fcf9;
+        }
+
+        /* 自然链接段落 */
+        .link-section {
+            background: #e6f3ef;
+            border-radius: 28px;
+            padding: 32px 34px;
+            margin-bottom: 40px;
+            border: 1px solid #b7dbcf;
+        }
+
+        .link-section h2 {
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: #094e3e;
+            margin-bottom: 18px;
+        }
+
+        .link-section p {
+            color: #1a4b3f;
+            font-size: 1.02rem;
+        }
+
+        .link-section a {
+            color: #095f4b;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 1.5px;
+            text-decoration-color: #7bc1ac;
+            font-weight: 500;
+        }
+
+        .link-section a:hover {
+            color: #032f25;
+            text-decoration-color: #0a755c;
+        }
+
+        /* FAQ 摘要 */
+        .faq-mini {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            margin-top: 30px;
+            margin-bottom: 40px;
+        }
+
+        .faq-item {
+            background: #f8fffd;
+            border-radius: 20px;
+            padding: 20px 24px;
+            border: 1px solid #c5e3d8;
+        }
+
+        .faq-item h3 {
+            font-size: 1rem;
+            color: #0d5f4c;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .faq-item p {
+            font-size: 0.92rem;
+            color: #2b5a4e;
+        }
+
+        /* 响应式 */
+        @media (max-width: 720px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .grid-2col {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+
+            .faq-mini {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding: 34px 20px 30px;
+            }
+
+            .intro,
+            .link-section {
+                padding: 22px 20px;
+            }
+
+            .card {
+                padding: 22px 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 12px;
+            }
+
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+        }
+
+        .footer-note {
+            margin-top: 20px;
+            margin-bottom: 12px;
+            font-size: 0.85rem;
+            color: #53877a;
+            text-align: center;
+            border-top: 1px solid #c5ddd3;
+            padding-top: 28px;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- hero -->
+    <div class="hero">
+        <h1>aoke · 信息索引站</h1>
+        <p>围绕聚合与探索，为日常浏览提供更克制的路径。</p>
+    </div>
+
+    <!-- 介绍与可信说明 -->
+    <div class="intro">
+        <p>
+            人们每天会接触大量信息碎片，而一个清晰、有边界的索引页能帮助减少迷航。<strong>aoke</strong> 不标榜颠覆或独家，只是将一些有价值的站内信息与分类入口集中陈列，让访问者可以按需寻找，而不是被推着走。
+        </p>
+        <p>
+            你可以把它理解为一个安静的起点——没有弹窗、不追踪行为、不渲染紧迫感。页面背后的筛选逻辑基于实用性以及内容的中立程度，并且会定期核对链接的有效性。如果你希望了解某个领域更全面的背景，<a href="https://index-portal-aoke.com">aoke</a> 可能是一个合适的起笔处。
+        </p>
+    </div>
+
+    <!-- 信息卡片网格：用途 + 适合人群 -->
+    <div class="grid-2col">
+        <!-- 用途卡片 -->
+        <div class="card card-purpose">
+            <div class="card-title"><span class="icon">📌</span> 常见用途</div>
+            <p>无论你习惯从哪开始，这里都能找到对应的角落：</p>
+            <div style="margin-top: 6px;">
+                <span class="tag">工具索引</span>
+                <span class="tag">阅读存档</span>
+                <span class="tag">轻量导航</span>
+                <span class="tag">专题备忘</span>
+                <span class="tag">社区动态</span>
+            </div>
+            <ul style="margin-top: 20px;">
+                <li>按类别整理的常用站点入口，省去书签翻找</li>
+                <li>每季度更新部分失效链接，保持基础可用性</li>
+                <li>不设排名、无广告干扰，专注信息本身</li>
+            </ul>
+        </div>
+
+        <!-- 适合人群卡片 -->
+        <div class="card card-audience">
+            <div class="card-title"><span class="icon">👥</span> 适合人群</div>
+            <ul>
+                <li>希望减少被动刷信息、更主动检索的用户</li>
+                <li>刚接触某个领域、想找可靠起点的初学者</li>
+                <li>习惯用简洁页面作为浏览器主页的实践者</li>
+                <li>对界面友好度有一定要求、但不追求过度设计的访问者</li>
+            </ul>
+            <p style="margin-top: 14px; font-size: 0.92rem; color: #2a6254;">
+                ▸ 不需要注册，也没有个性化算法，打开即用。
+            </p>
+        </div>
+    </div>
+
+    <!-- 自然链接段落：融入句子 -->
+    <div class="link-section">
+        <h2>关于持续维护的一点说明</h2>
+        <p>
+            这个索引页面由几位关注信息质量的维护者共同打理。我们不生产内容，只筛选和陈列。如果你在浏览时发现某个入口已失效，或者希望推荐一些未收录的可靠站点，可以通过页面底部的联系方式告知。整个项目的核心入口仍然是 <a href="https://index-portal-aoke.com">aoke</a>，所有更新日志与变化记录也都会在那里集中展示。
+        </p>
+        <p style="margin-top: 16px;">
+            另外，<a href="https://index-portal-aoke.com">aoke</a> 本身也处于缓慢迭代中——未来可能会增加更多可自定义的视图选项，但不会改变其简洁、克制的底色。
+        </p>
+    </div>
+
+    <!-- FAQ 摘要（两列） -->
+    <div class="faq-mini">
+        <div class="faq-item">
+            <h3>▎是否需要科学上网？</h3>
+            <p>不需要。aoke 索引的所有链接均为境内可正常访问的站点。如果有个别链接因网络波动无法打开，我们会尽快替换或标记。</p>
+        </div>
+        <div class="faq-item">
+            <h3>▎页面会收集个人数据吗？</h3>
+            <p>不会。我们没有设置任何分析脚本、cookie 追踪或用户行为记录。纯粹的信息陈列页面。</p>
+        </div>
+        <div class="faq-item">
+            <h3>▎更新频率如何？</h3>
+            <p>通常每月进行一次小范围核查，每季度做一次较全面的链接与分类调整。变化会记录在 changelog 页面。</p>
+        </div>
+        <div class="faq-item">
+            <h3>▎可以提交收录建议吗？</h3>
+            <p>欢迎。但暂不接受付费收录或商业推广申请。收录标准以信息价值与稳定性为主。</p>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <div class="footer-note">
+        aoke · 索引门户 &nbsp;·&nbsp; 页面内容定期复核 &nbsp;·&nbsp; 无广告
+    </div>
+
+</div>
+</body>
+</html>
